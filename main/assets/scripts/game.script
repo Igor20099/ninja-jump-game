@@ -1,0 +1,67 @@
+math.randomseed(os.time())
+
+local function init_left_wall_traps(self)
+	-- local y = 260
+	-- for i = 1,3 do 
+	-- 	self.trap = factory.create(self.traps[math.random(1,#self.traps)],vmath.vector3(115, y, 0.6))
+	-- 	msg.post(self.trap, 'up')
+	-- 	y = y + 260
+	-- end
+end
+
+
+
+local function init_right_wall_traps(self)
+	local y = 100
+	for i = 1,8 do 
+		self.trap = factory.create(self.traps[math.random(1,#self.traps)],vmath.vector3(320, y, 0.6))
+		msg.post(self.trap, 'down')
+		local sprite1 = msg.url('main',self.trap,'sprite')
+		sprite.set_hflip(sprite1, true)
+		y = y + 260
+	end
+end
+
+
+local function create_trap_left_wall(self)
+	self.trap = factory.create(self.traps[math.random(1,#self.traps)],vmath.vector3(115, -20, 0.6))
+	msg.post(self.trap, 'up')
+end
+
+local function create_trap_right_wall(self)
+	self.x,self.y = window.get_size()
+	self.trap = factory.create(self.traps[math.random(1,#self.traps)],vmath.vector3(320,self.y , 0.6))
+	local sprite1 = msg.url('main',self.trap,'sprite')
+	sprite.set_hflip(sprite1, true)
+	msg.post(self.trap, 'down')
+end
+
+function init(self)
+	self.traps = {'#trap_1_factory','#trap_2_factory','#trap_3_factory'}
+	self.create_left_traps = nil
+	self.create_right_traps = nil
+	msg.post('#end_game', 'disable')
+end
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('end_game') then
+		timer.cancel(self.create_left_traps)
+		timer.cancel(self.create_right_traps)
+		msg.post('#end_game', 'enable')
+		msg.post('#scores', 'send_scores')
+		sound.play('#die')
+	end
+
+	if message_id == hash('start_game') then
+		-- init_left_wall_traps(self)
+		init_right_wall_traps(self)
+		self.create_left_traps = timer.delay(1.6, true, create_trap_left_wall)
+		self.create_right_traps = timer.delay(1.6, true, create_trap_right_wall)
+	end
+end
+
+function on_reload(self)
+	-- Toggle the visual profiler on hot reload.
+	profiler.enable_ui(true)
+end

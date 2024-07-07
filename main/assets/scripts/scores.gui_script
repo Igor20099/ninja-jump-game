@@ -1,0 +1,16 @@
+function init(self) 
+self.scores = 0
+
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('add_score') then
+		self.scores = self.scores + 1
+		gui.set_text(gui.get_node('scores'), self.scores)
+	end
+
+	if message_id == hash('send_scores') then
+		msg.post('#end_game', 'scores',{scores = self.scores})
+	end
+end
+

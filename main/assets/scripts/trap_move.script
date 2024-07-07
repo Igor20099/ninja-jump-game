@@ -1,0 +1,31 @@
+function init(self)
+end
+
+
+function update(self, dt)
+	self.x,self.y = window.get_size()
+	if go.get('.', 'position.y') > self.y + 20  then
+		go.delete()
+	end
+
+	if go.get('.', 'position.y') < -20  then
+		go.delete()
+	end
+end
+
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('up') then
+		timer.delay(0.02, true, function() 
+			go.set('.', 'position.y', go.get('.', 'position.y') + 3)
+		end)
+
+	elseif message_id == hash('down') then
+		timer.delay(0.02, true, function() 
+			go.set('.', 'position.y', go.get('.', 'position.y') - 3)
+		end)
+	end
+end
+
+

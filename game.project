@@ -1,0 +1,25 @@
+[bootstrap]
+main_collection = /main/proxy.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 430
+height = 932
+high_dpi = 1
+
+[android]
+input_method = HiddenInputField
+
+[project]
+title = Ninja Jump
+dependencies#0 = https://github.com/indiesoftby/defold-yagames/archive/master.zip
+dependencies#1 = https://github.com/subsoap/defsave/archive/master.zip
+
+[html5]
+scale_mode = stretch
+show_fullscreen_button = 0
+show_made_with_defold = 0
+show_console_banner = 0
+
