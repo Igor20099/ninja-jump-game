@@ -1,13 +1,4 @@
-# Welcome to Defold
+# Ninja Jump
+Гиперказуальная игра где вы прыгаете по стенам ниндзя. Одна стена двигается вверх, а друга вниз тем самым зарабатывая очки. На стенах присутствуют шипы. Если ниндзя коснется их то упадет
 
-This project was created from the "empty" project template.
-
-The settings in ["game.project"](defold://open?path=/game.project) are all the default. A bootstrap empty ["main.collection"](defold://open?path=/main/main.collection) is included.
-
-Check out [the documentation pages](https://defold.com/learn) for examples, tutorials, manuals and API docs.
-
-If you run into trouble, help is available in [our forum](https://forum.defold.com).
-
-Happy Defolding!
-
----
+Поиграть можно здесь [joymaker123.itch.io/ninja-jump](https://joymaker123.itch.io/ninja-jump)
